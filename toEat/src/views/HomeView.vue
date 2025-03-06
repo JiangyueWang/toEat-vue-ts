@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-/**
- * Restaurants
- * 
- * name: string
- * address: string
- * status: string (e.g "want to try" | "must try" | "loved it")
- * dishes: array of Dish objects
- */
+import type { Dish, RecommendStatus } from '@/types';
+import { statusList } from '@/constants';
 
 // const restaurantStatusList = [
 //   'want to try',
@@ -18,19 +12,11 @@ import { ref } from 'vue'
 // generate a union type from the array
 // type recommendedStatus = typeof restaurantStatusList[number];
 
- interface Restaurant {
+ interface Restaurant  {
   name?: string;
-  status?: restaurantStatus;
+  status?: RecommendStatus;
   dishes?: Dish[];
 }
-interface Dish {
-  name: string;
-  diet?: Diet;
-  status: restaurantStatus;
-}
-type Diet = 'vegan' | 'vegetarian' | 'gluten-free' | 'dairy-free' | 'nut-free' | 'none';
-type restaurantStatus = 'want to try' | 'recommended' | 'do not recommended' | 'must try';
-const statusList = [ 'want to try', 'recommended', 'do not recommended', 'must try'];
 
 const resturantList = ref<Restaurant[]>([]);
 const newRestaurant = ref<Restaurant>({});

@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
-interface Dish {
-  name: string;
-  diet?: Diet;
-  status: dishStatus;
-}
-type Diet = 'vegan' | 'vegetarian' | 'gluten-free' | 'dairy-free' | 'nut-free' | 'none';
-type dishStatus = 'want to try' | 'recommended' | 'do not recommended' | 'must try';
-const statusList = [ 'want to try', 'recommended', 'do not recommended', 'must try'];
+import { statusList } from '@/constants';
+import type { Dish } from '@/types';
 
 const dishList = ref<Dish[]>([]);
-const newDish = ref<Dish>({});
+const newDish = ref<Dish>({
+  status: 'want to try'
+});
 
 function addDish() {
   dishList.value.push({
@@ -19,7 +14,6 @@ function addDish() {
     diet: newDish.value.diet,
     status: newDish.value.status,
   });
-  console.log(newDish.value)
 }
 
 </script>
